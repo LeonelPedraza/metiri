@@ -1,22 +1,24 @@
+import { Box, Paper, Stack, Typography } from "@mui/material";
 import { FC, ReactNode } from "react";
+import { blue } from "@mui/material/colors";
 
 interface IProps {
     title?: string | undefined,
     children: ReactNode
 }
 
-export const Box: FC<IProps> = ({ title, children }) => {
+export const CustomBox: FC<IProps> = ({ title, children }) => {
     return (
-        <div className="flex flex-col gap-4 w-full p-4 rounded-md shadow-md">
-            {
-                title &&
-                <div className="w-full flex items-center justify-center">
-                    <h1 className="uppercase font-semibold text-xl text-blue-800">{title}</h1>
-                </div>
-            }
-            <div className="w-full">
+        <Paper elevation={2}>
+            <Stack paddingY={2} paddingX={2} spacing={2} alignItems='center' justifyContent='space-between'>
+                {
+                    title &&
+                    <Box display='flex' alignItems='center' justifyContent='center'>
+                        <Typography variant="h5" fontWeight='600' color={blue[900]} gutterBottom>{title}</Typography>
+                    </Box>
+                }
                 {children}
-            </div>
-        </div>
+            </Stack>
+        </Paper>
     );
 }

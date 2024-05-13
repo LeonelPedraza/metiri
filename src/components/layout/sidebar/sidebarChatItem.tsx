@@ -1,3 +1,5 @@
+import { Box, Paper, Stack, Typography } from "@mui/material";
+import { blue, blueGrey, grey } from "@mui/material/colors";
 import { FC } from "react";
 
 interface IProps {
@@ -7,14 +9,16 @@ interface IProps {
 
 export const SidebarChatItem: FC<IProps> = ({ from, message }) => {
     return (
-        <div className="w-full flex item-center gap-2 cursor-pointer">
-            <div className="w-10 h-10 flex items-center justify-center bg-gray-300 text-blue-800 text-2xl font-bold rounded-md">
-                {from.charAt(0)}
-            </div>
-            <div className="flex flex-col">
-                <h3 className="text-elipsis text-gray-600 font-semibold text-sm">{from}</h3>
-                <p className="md:max-w-40  block overflow-hidden text-ellipsis whitespace-nowrap text-gray-400 font-medium text-xs">{message}</p>
-            </div>
-        </div>
+        <Stack direction='row' spacing={2}>
+            <Paper elevation={0} sx={{ backgroundColor: blueGrey[100] }}>
+                <Box width={40} height={40} display='flex' alignItems='center' justifyContent='center' fontSize={24} fontWeight='700' color={blue[900]}>
+                    {from.charAt(0)}
+                </Box>
+            </Paper>
+            <Stack>
+                <Typography fontSize={15} fontWeight={600} color={grey[700]}>{from}</Typography>
+                <Typography fontSize={13} color={grey[500]} sx={{ maxWidth: '10rem', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{message}</Typography>
+            </Stack>
+        </Stack>
     );
 }

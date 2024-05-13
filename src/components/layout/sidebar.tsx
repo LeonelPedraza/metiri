@@ -1,75 +1,97 @@
+import { Box, ListItem } from "@mui/material";
 import { SidebarChatItem } from "./sidebar/sidebarChatItem";
 import { SidebarNewsItem } from "./sidebar/sidebarNewsItem";
 import { SidebarSection } from "./sidebar/sidebarSection";
 import { EmailOutlined, BookmarkBorder, Cake, DescriptionOutlined, Videocam, GroupOutlined, Share, AssuredWorkloadOutlined } from '@mui/icons-material'
+import { blueGrey } from "@mui/material/colors";
 
 export const SideBar = () => {
     return (
-        <div className="h-full w-full flex flex-col bg-sidebar">
+        <Box sx={{ backgroundColor: blueGrey[50], height: '100%' }}>
             <SidebarSection
-                icon={<EmailOutlined color="primary"/>}
+                icon={<EmailOutlined color="primary" />}
                 title="Comunicaciones"
+                alert="Tienes 45 mensajes"
             >
-                <div className="flex flex-col gap-2 mb-4">
+                <ListItem>
                     <SidebarChatItem
                         from="Samantha William"
                         message="Lorem ipsum dolor sit amet"
                     />
+                </ListItem>
+                <ListItem>
                     <SidebarChatItem
                         from="Samantha William"
                         message="Lorem ipsum dolor sit amet"
                     />
+                </ListItem>
+                <ListItem>
                     <SidebarChatItem
                         from="Samantha William"
                         message="Lorem ipsum dolor sit amet asda asd a"
                     />
+                </ListItem>
+                <ListItem>
                     <SidebarChatItem
                         from="Samantha William"
                         message="Lorem ipsum dolor sit amet"
                     />
+                </ListItem>
+                <ListItem>
                     <SidebarChatItem
                         from="Samantha William"
                         message="Lorem ipsum dolor sit amet"
                     />
-                </div>
+
+                </ListItem>
             </SidebarSection>
             <SidebarSection
-                icon={<BookmarkBorder color="primary"/>}
+                icon={<BookmarkBorder color="primary" />}
                 title="Noticias"
             >
-                <div className="flex flex-col gap-2 mb-4">
+                <ListItem>
                     <SidebarNewsItem
-                        icon={<Cake/>}
+                        icon={<Cake />}
                         title="Cumpleaños"
                         subtitle="Lorem ipsum dolor sit amet"
                     />
+                </ListItem>
+                <ListItem>
                     <SidebarNewsItem
-                        icon={<AssuredWorkloadOutlined/>}
+                        icon={<AssuredWorkloadOutlined />}
                         title="Capacitaciones"
                         subtitle="Lorem ipsum dolor sit amet"
                     />
+                </ListItem>
+                <ListItem>
                     <SidebarNewsItem
-                        icon={<Share/>}
+                        icon={<Share />}
                         title="Link de interés"
                         subtitle="Lorem ipsum dolor sit amet"
                     />
+                </ListItem>
+                <ListItem>
                     <SidebarNewsItem
                         icon={<Videocam />}
                         title="Video"
                         subtitle="Lorem ipsum dolor sit amet"
                     />
+                </ListItem>
+                <ListItem>
                     <SidebarNewsItem
                         icon={<GroupOutlined />}
                         title="Actividades"
                         subtitle="Lorem ipsum dolor sit amet"
                     />
+                </ListItem>
+                <ListItem>
                     <SidebarNewsItem
                         icon={<DescriptionOutlined />}
                         title="Documento"
                         subtitle="Lorem ipsum dolor sit amet"
                     />
-                </div>
+                </ListItem>
             </SidebarSection>
-        </div>
+        </Box>
     );
 }

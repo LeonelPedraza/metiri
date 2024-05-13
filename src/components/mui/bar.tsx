@@ -1,5 +1,6 @@
 import { FC, ReactNode } from "react";
 import { BarChart } from "@mui/x-charts";
+import { Container, Stack } from "@mui/material";
 
 const dataset = [
     {
@@ -28,21 +29,23 @@ export const Bar: FC<IProps> = ({ children }) => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center py-2 shadow-md rounded-sm">
-            {
-                children && children
-            }
-            <BarChart
-                xAxis={[{ scaleType: 'band', dataKey: 'date' }]}
-                dataset={dataset}
-                // width={500}
-                {...chartSetting}
-                slotProps={{
-                    bar: {
-                        clipPath: `inset(0px round 10px 10px 0px 0px)`,
-                    },
-                }}
-            />
-        </div>
+        <Container>
+            <Stack justifyContent='center' alignItems='center' spacing={1}>
+                {
+                    children && children
+                }
+                <BarChart
+                    xAxis={[{ scaleType: 'band', dataKey: 'date' }]}
+                    dataset={dataset}
+                    // width={500}
+                    {...chartSetting}
+                    slotProps={{
+                        bar: {
+                            clipPath: `inset(0px round 10px 10px 0px 0px)`,
+                        },
+                    }}
+                />
+            </Stack>
+        </Container>
     );
 }

@@ -1,21 +1,24 @@
 import { Update } from '@mui/icons-material'
+import { Box, Breadcrumbs, Link, Stack, Typography } from '@mui/material';
+import { blue, grey } from '@mui/material/colors';
 
 const lastUpdate = '12:05'
 
-export const Breadcrumbs = () => {
+export const CustomBreadcrumbs = () => {
     return (
-        <div className="w-full flex items-center justify-between bg-bradcrumbs px-2 md:px-8 py-1">
-            <div>
-                <span className="text-sm font-medium">
-                    Home/Dashboard
-                </span>
-            </div>
-            <div className='flex gap-2 items-center text-sm font-medium text-'>
+        <Stack direction='row' justifyContent='space-between' alignItems='center' paddingX={3} paddingY={1} sx={{ backgroundColor: blue[50] }}>
+            <Breadcrumbs aria-label="breadcrumb">
+                <Link underline="hover" color="inherit" href="/">
+                    Home
+                </Link>
+                <Typography color="text.primary">Dashboard</Typography>
+            </Breadcrumbs>
+            <Box display='flex' alignItems='center' gap={1}>
                 <Update color='disabled'/>
-                <span>
+                <Typography fontSize={15} color={grey[800]}>
                     Ultima actualización: {lastUpdate}
-                </span>
-            </div>
-        </div>
+                </Typography>
+            </Box>
+        </Stack>
     );
 }

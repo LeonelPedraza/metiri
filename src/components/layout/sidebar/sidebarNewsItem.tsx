@@ -1,3 +1,5 @@
+import { Box, Paper, Stack, Typography } from "@mui/material";
+import { blue, blueGrey, grey } from "@mui/material/colors";
 import { FC, ReactNode } from "react";
 
 interface IProps {
@@ -8,14 +10,16 @@ interface IProps {
 
 export const SidebarNewsItem: FC<IProps> = ({ icon, title, subtitle }) => {
     return (
-        <div className="w-full flex item-center gap-2 cursor-pointer">
-            <div className="w-10 h-10 flex items-center justify-center bg-gray-300 text-blue-800 text-2xl font-bold rounded-md">
-                {icon}
-            </div>
-            <div className="flex flex-col">
-                <h3 className="text-elipsis text-gray-600 font-semibold text-sm">{title}</h3>
-                <p className="md:max-w-40 block overflow-hidden text-ellipsis whitespace-nowrap text-gray-400 font-medium text-xs">{subtitle}</p>
-            </div>
-        </div>
+        <Stack direction='row' spacing={2}>
+            <Paper elevation={0} sx={{ backgroundColor: blueGrey[100] }}>
+                <Box width={40} height={40} display='flex' alignItems='center' justifyContent='center' fontSize={24} fontWeight='700' color={blue[900]}>
+                    {icon}
+                </Box>
+            </Paper>
+            <Stack>
+                <Typography fontSize={15} fontWeight={600} color={grey[700]}>{title}</Typography>
+                <Typography fontSize={13} color={grey[500]} sx={{ maxWidth: '10rem', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{subtitle}</Typography>
+            </Stack>
+        </Stack>
     );
 }

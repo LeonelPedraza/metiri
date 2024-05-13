@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Gauge } from "@mui/x-charts";
+import { Typography } from "@mui/material";
 
 interface IProps {
     title?: string | undefined,
@@ -13,7 +14,7 @@ export const GaugeChart: FC<IProps> = ({ title, value, width, height }) => {
         <div className="flex flex-col items-center h-full justify-center py-2 rounded-sm">
             {
                 title &&
-                <h4 className="text-sm">{title}</h4>
+                <Typography variant="h6" fontSize={14}>{title}</Typography>
             }
             <Gauge width={width} height={height} value={value} />
         </div>

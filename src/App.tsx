@@ -1,162 +1,196 @@
-import { Box } from "./components/dashboard/box"
+import { CustomBox } from "./components/dashboard/box"
 import { GaugeChart } from "./components/mui/gauce"
 import { Bar } from "./components/mui/bar"
 import { Layout } from "./layout/layout"
 import { ButtonsGroup } from "./components/dashboard/buttonsGroup"
 import { Calendar } from "./components/mui/calendar"
-import { Button } from "@mui/material"
+import { Button, Container, Grid, Paper, Stack, Typography } from "@mui/material"
 import { FolderOutlined, PersonOutlined, EditOutlined, Done, GroupsOutlined } from "@mui/icons-material"
+import { blue, red } from "@mui/material/colors"
 
 function App() {
 
   return (
     <Layout>
-      <div className="w-full flex flex-col px-2 md:px-8 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Box
-            title="Presentismo"
-          >
-            <div className="h-full grid grid-cols-2 grid-rows-2 gap-2">
-              <GaugeChart
-                title="Llegadas tarde: 15"
-                value={60}
-                height={130}
-              />
-              <GaugeChart
-                title="Ausentes / Presentes: 15"
-                value={60}
-                height={130}
-              />
-              <GaugeChart
-                title="Ausencias: 15"
-                value={60}
-                height={130}
-              />
-              <GaugeChart
-                title="Inconsistencias: 15"
-                value={60}
-                height={130}
-              />
-            </div>
-          </Box>
-          <Box
-            title="Solicitudes Pendientes"
-          >
-            <Bar>
-              <h3 className="text-red-600 text-xl font-semibold">25</h3>
-            </Bar>
-          </Box>
-          <Box>
-            <div className="flex flex-col gap-8">
-              <div className="flex gap-4 justify-start items-center shadow-md px-4 py-2">
-                <GroupsOutlined sx={{ fontSize: 60, color: '#007BC3'}}/>
-                <div className="flex flex-col items-center">
-                  <h3 className="text-lg">Colaboradores activos</h3>
-                  <span className="text-4xl font-semibold text-blue-800">80</span>
-                </div>
-              </div>
-              <div className="flex gap-4 justify-start items-center shadow-md px-4">
-                <GaugeChart
-                  value={60}
-                  width={80}
-                  height={80}
-                />
-                <div className="flex flex-col items-center">
-                  <h3 className="text-lg">Ingresos del mes</h3>
-                  <span className="text-4xl font-semibold text-blue-800">4</span>
-                </div>
-              </div>
-              <div className="flex gap-4 justify-start items-center shadow-md px-4">
-                <GaugeChart
-                  value={60}
-                  width={80}
-                  height={80}
-                />
-                <div className="flex flex-col items-center">
-                  <h3 className="text-lg">Egresos del mes</h3>
-                  <span className="text-4xl font-semibold text-blue-800">2</span>
-                </div>
-              </div>
-            </div>
-          </Box>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Box
-            title="Calendario"
-          >
-            <Calendar/>
-          </Box>
-          <Box
-            title="Sueldos"
-          >
-            <div className="flex flex-col items-center h-full justify-between px-8 gap-8">
-              <div className="flex flex-col w-5/6 gap-4 ">
-                <div className="flex justify-between">
-                  <FolderOutlined fontSize="large"/>
-                  <h4 className="text-xl">Liquidaciones abiertas</h4>
-                  <span className="text-xl text-blue-800">5</span>
-                </div>
-                <div className="flex justify-between">
-                  <PersonOutlined fontSize="large"/>
-                  <h4 className="text-xl">Colaboradores con errores</h4>
-                  <span className="text-xl text-blue-800">2</span>
-                </div>
-                <div className="flex justify-between">
-                  <EditOutlined fontSize="large"/>
-                  <h4 className="text-xl">Recibos sin firmar</h4>
-                  <span className="text-xl text-blue-800">3</span>
-                </div>
-                <div className="flex justify-between">
-                  <Done fontSize="large"/>
-                  <h4 className="text-xl">Colaboradores liquidados</h4>
-                  <span className="text-xl text-blue-800">2</span>
-                </div>
-              </div>
-              <div className="w-1/2 mt-auto">
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="small"
-                  fullWidth
-                >
-                  Ver más
-                </Button>
-              </div>
-            </div>
-          </Box>
+      <Stack direction='column' paddingX={{ xs: 2, md: 8 }} paddingY={4} gap={4} justifyContent='center'>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={4}>
+            <CustomBox
+              title="Presentismo"
+            >
+              <Grid container justifyContent='center' alignItems='center'>
+                <Grid item md={6}>
+                  <GaugeChart
+                    title="Llegadas tarde: 15"
+                    value={60}
+                    width={130}
+                    height={130}
+                  />
+                </Grid>
+                <Grid item md={6}>
+                  <GaugeChart
+                    title="Ausentes / Presentes: 15"
+                    value={60}
+                    width={130}
+                    height={130}
+                  />
+                </Grid>
+                <Grid item md={6}>
+                  <GaugeChart
+                    title="Ausencias: 15"
+                    value={60}
+                    width={130}
+                    height={130}
+                  />
+                </Grid>
+                <Grid item md={6}>
+                  <GaugeChart
+                    title="Inconsistencias: 15"
+                    value={60}
+                    width={130}
+                    height={130}
+                  />
+                </Grid>
+              </Grid>
+            </CustomBox>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <CustomBox
+              title="Solicitudes Pendientes"
+            >
+              <Bar>
+                <Typography variant="h4" color={red[600]} fontWeight={600}>25</Typography>
+              </Bar>
+            </CustomBox>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <CustomBox>
+              <Stack padding={1} spacing={2}>
+                <Paper>
+                  <Stack direction='row' spacing={2} paddingX={2} paddingY={1}>
+                    <GroupsOutlined sx={{ fontSize: 60, color: '#007BC3' }} />
+                    <Stack justifyContent='center' alignItems='center'>
+                      <Typography variant="h6">Colaboradores activos</Typography>
+                      <Typography variant="h4" fontWeight={700} color={blue[900]}>80</Typography>
+                    </Stack>
+                  </Stack>
+                </Paper>
+                <Paper>
+                  <Stack direction='row' spacing={2} padding={1}>
+                    <GaugeChart
+                      value={60}
+                      width={80}
+                      height={80}
+                    />
+                    <Stack justifyContent='center' alignItems='center'>
+                      <Typography variant="h6">Ingresos del mes</Typography>
+                      <Typography variant="h4" fontWeight={700} color={blue[900]}>4</Typography>
+                    </Stack>
+                  </Stack>
+                </Paper>
+                <Paper>
+                  <Stack direction='row' spacing={2} padding={1}>
+                    <GaugeChart
+                      value={60}
+                      width={80}
+                      height={80}
+                    />
+                    <Stack justifyContent='center' alignItems='center'>
+                      <Typography variant="h6">Egresos del mes</Typography>
+                      <Typography variant="h4" fontWeight={700} color={blue[900]}>2</Typography>
+                    </Stack>
+                  </Stack>
+                </Paper>
+              </Stack>
+            </CustomBox>
+          </Grid>
+        </Grid>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <CustomBox
+              title="Calendario"
+            >
+              <Calendar />
+            </CustomBox>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <CustomBox
+              title="Sueldos"
+            >
+              <Container>
+                <Stack spacing={2}>
+                  <Stack direction='row' justifyContent='space-between' spacing={4}>
+                    <FolderOutlined fontSize="large" />
+                    <Typography variant="h6">Liquidaciones abiertas</Typography>
+                    <Typography variant="h5" fontWeight={600} color={blue[900]}>5</Typography>
+                  </Stack>
+                  <Stack direction='row' justifyContent='space-between' spacing={4}>
+                    <PersonOutlined fontSize="large" />
+                    <Typography variant="h6">Colaboradores con errores</Typography>
+                    <Typography variant="h5" fontWeight={600} color={blue[900]}>2</Typography>
+                  </Stack>
+                  <Stack direction='row' justifyContent='space-between' spacing={4}>
+                    <EditOutlined fontSize="large" />
+                    <Typography variant="h6">Recibos sin firmar</Typography>
+                    <Typography variant="h5" fontWeight={600} color={blue[900]}>3</Typography>
+                  </Stack>
+                  <Stack direction='row' justifyContent='space-between' spacing={4}>
+                    <Done fontSize="large" />
+                    <Typography variant="h6">Colaboradores liquidados</Typography>
+                    <Typography variant="h5" fontWeight={600} color={blue[900]}>2</Typography>
+                  </Stack>
 
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Box
-            title="Vencimientos"
-          >
-            <Bar>
-              <ButtonsGroup
-                values={['Contratos', 'Documentos']}
-              />
-            </Bar>
-          </Box>
-          <Box
-            title="Reclutamientos RRHH"
-          >
-            <Bar>
-              <ButtonsGroup
-                values={['Solicitudes', 'seleccionados', 'Reclutados']}
-              />
-            </Bar>
-          </Box>
-          <Box
-            title="Evaluaciones RRGG"
-          >
-            <Bar>
-              <ButtonsGroup
-                values={['Pendientes', 'Cerradas']}
-              />
-            </Bar>
-          </Box>
-        </div>
-      </div>
-    </Layout>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="medium"
+                    fullWidth
+                    
+                  >
+                    Ver más
+                  </Button>
+                </Stack>
+              </Container>
+            </CustomBox>
+          </Grid>
+        </Grid>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={4}>
+            <CustomBox
+              title="Vencimientos"
+            >
+              <Bar>
+                <ButtonsGroup
+                  values={['Contratos', 'Documentos']}
+                />
+              </Bar>
+            </CustomBox>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <CustomBox
+              title="Reclutamientos RRHH"
+            >
+              <Bar>
+                <ButtonsGroup
+                  values={['Solicitudes', 'seleccionados', 'Reclutados']}
+                />
+              </Bar>
+            </CustomBox>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <CustomBox
+              title="Evaluaciones RRGG"
+            >
+              <Bar>
+                <ButtonsGroup
+                  values={['Pendientes', 'Cerradas']}
+                />
+              </Bar>
+            </CustomBox>
+          </Grid>
+        </Grid>
+      </Stack>
+    </Layout >
   )
 }
 

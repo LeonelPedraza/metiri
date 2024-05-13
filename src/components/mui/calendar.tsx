@@ -1,4 +1,4 @@
-import { Badge } from "@mui/material";
+import { Badge, Box, Grid, Stack, Typography } from "@mui/material";
 import { DateCalendar, DayCalendarSkeleton, LocalizationProvider, PickersDay, PickersDayProps } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from "dayjs";
@@ -18,30 +18,30 @@ const highlightedDays: HighlightedDay[] = [
     { day: 25, month: 5, year: 2024, type: 'cumpleaños' }
 ]
 
-function CustomDay(props: PickersDayProps<Dayjs>){
+function CustomDay(props: PickersDayProps<Dayjs>) {
     const { day, outsideCurrentMonth, ...other } = props;
     const date = day.date();
     // const month = day.month() + 1; // dayjs month is zero-indexed, January is 0
     // const year = day.year();
 
-    const highlight = highlightedDays.find(d => (d.day == date) ? d : undefined );
+    const highlight = highlightedDays.find(d => (d.day == date) ? d : undefined);
 
     let badgeContent;
     switch (highlight?.type) {
         case 'licencias':
-            badgeContent = <div className="w-4 h-4 border-4 border-indigo-600 rounded-full"></div>;
+            badgeContent = <Badge badgeContent="" color='secondary'></Badge>;
             break;
         case 'vencimientos':
-            badgeContent = <div className="w-4 h-4 border-4 border-red-600 rounded-full"></div>;
+            badgeContent = <Badge badgeContent="" color="error"></Badge>;
             break;
         case 'ausencias':
-            badgeContent = <div className="w-4 h-4 border-4 border-amber-600 rounded-full"></div>;
+            badgeContent = <Badge badgeContent="" color="warning"></Badge>;
             break;
         case 'cumpleaños':
-            badgeContent = <div className="w-4 h-4 border-4 border-green-600 rounded-full"></div>;
+            badgeContent = <Badge badgeContent="" color="success"></Badge>;
             break;
         case 'aniversario':
-            badgeContent = <div className="w-4 h-4 border-4 border-sky-600 rounded-full"></div>;
+            badgeContent = <Badge badgeContent="" color="info"></Badge>;
             break;
         default:
             badgeContent = undefined; // No badge if not a special day
@@ -58,41 +58,45 @@ function CustomDay(props: PickersDayProps<Dayjs>){
 export const Calendar = () => {
 
     const initialValue = dayjs('2024-01-01');
-    
+
     return (
-        <div className="w-full flex flex-col md:flex-row justify-between">
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DateCalendar 
-                    defaultValue={initialValue}
-                    renderLoading={() => <DayCalendarSkeleton />}
-                    onChange={() => { }}
-                    slots={{
-                        day: CustomDay
-                    }}
-                />
-            </LocalizationProvider>
-            <div className="flex flex-col flex-1 py-4 gap-2">
-                <div className="flex gap-2 items-center ">
-                    <div className="w-4 h-4 border-4 border-indigo-600 rounded-full"></div>
-                    <span>Licencias</span>
-                </div>
-                <div className="flex gap-2 items-center ">
-                    <div className="w-4 h-4 border-4 border-red-600 rounded-full"></div>
-                    <span>Vencimientos</span>
-                </div>
-                <div className="flex gap-2 items-center ">
-                    <div className="w-4 h-4 border-4 border-amber-600 rounded-full"></div>
-                    <span>Ausencias</span>
-                </div>
-                <div className="flex gap-2 items-center ">
-                    <div className="w-4 h-4 border-4 border-green-600 rounded-full"></div>
-                    <span>Cumpleaños</span>
-                </div>
-                <div className="flex gap-2 items-center ">
-                    <div className="w-4 h-4 border-4 border-sky-600 rounded-full"></div>
-                    <span>Aniversario</span>
-                </div>
-            </div>
-        </div>
+        <Grid container spacing={2}>
+            <Grid item md={8}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DateCalendar
+                        defaultValue={initialValue}
+                        renderLoading={() => <DayCalendarSkeleton />}
+                        onChange={() => { }}
+                        slots={{
+                            day: CustomDay
+                        }}
+                    />
+                </LocalizationProvider>
+            </Grid>
+            <Grid item md={4}>
+                <Stack >
+                    <Box display='flex' flexDirection='row' alignItems='center' gap={2}>
+                        <Badge badgeContent="" color='secondary'></Badge>
+                        <Typography variant="h6">Licencias</Typography>
+                    </Box>
+                    <Box display='flex' flexDirection='row' alignItems='center' gap={2}>
+                        <Badge badgeContent="" color="error"></Badge>
+                        <Typography variant="h6">Vencimientos</Typography>
+                    </Box>
+                    <Box display='flex' flexDirection='row' alignItems='center' gap={2}>
+                        <Badge badgeContent="" color="warning"></Badge>
+                        <Typography variant="h6">Ausencias</Typography>
+                    </Box>
+                    <Box display='flex' flexDirection='row' alignItems='center' gap={2}>
+                        <Badge badgeContent="" color="success"></Badge>
+                        <Typography variant="h6">Cumpleaños</Typography>
+                    </Box>
+                    <Box display='flex' flexDirection='row' alignItems='center' gap={2}>
+                        <Badge badgeContent="" color="info"></Badge>
+                        <Typography variant="h6">Aniversario</Typography>
+                    </Box>
+                </Stack>
+            </Grid>
+        </Grid>
     );
 }
